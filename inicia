@@ -1,0 +1,3 @@
+source $HOME/docker/venv/bin/activate
+cd $HOME/docker
+export DJANGO_SETTINGS_MODULE=pystore.settings

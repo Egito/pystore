@@ -1,0 +1,49 @@
+version: "3.3"
+
+services: 
+  web:
+    build: .
+    container_name: python
+    environment: 
+      - PYTHONPATH=/usr/bin
+    command: python manage.py runserver 0.0.0.0:8080
+    volumes: 
+      - ./:/code
+    ports: 
+      - 8080:8080
+    user: 1000:1000
+    working_dir: /code
+    depends_on: 
+      - db
+        
+  db:
+    image: postgres
+    container_name: postgresql
+    environment: 
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres!
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data/
+
+  code-server:
+    image: ghcr.io/linuxserver/code-server
+    container_name: code-server
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Fortaleza
+      - PASSWORD=salvador #optional
+#      - HASHED_PASSWORD= #optional
+      - SUDO_PASSWORD=egito #optional
+      - SUDO_PASSWORD_HASH= #optional
+#      - PROXY_DOMAIN=code-server.salvador.eti
+    working_dir: /code
+    volumes:
+      - ./config:/config
+      - ./:/code
+    ports:
+      - 8443:8443
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
