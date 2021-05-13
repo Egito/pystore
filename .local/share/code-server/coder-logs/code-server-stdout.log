@@ -1,0 +1,7 @@
+[2021-05-13T01:08:30.803Z] info  code-server 3.8.0 c4610f7829701aadb045d450013b84491c30580d
+[2021-05-13T01:08:30.807Z] info  Using user-data-dir /config/data
+[2021-05-13T01:08:30.860Z] info  Using config file ~/.config/code-server/config.yaml
+[2021-05-13T01:08:30.860Z] info  HTTP server listening on http://0.0.0.0:8443 
+[2021-05-13T01:08:30.860Z] info    - Authentication is enabled
+[2021-05-13T01:08:30.861Z] info      - Using password from $PASSWORD
+[2021-05-13T01:08:30.861Z] info    - Not serving HTTPS 
