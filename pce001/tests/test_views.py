@@ -1,15 +1,15 @@
-#import pytest
+import pytest
 
 from django.urls import resolve, reverse
-#from pytest_django.asserts import assertTemplateUsed
+from pytest_django.asserts import assertTemplateUsed
 
 
-#@pytest.fixture
+@pytest.fixture
 def home_response(client):
     return client.get(reverse("pce001:home"))
 
 
-#@pytest.fixture
+@pytest.fixture
 def about_response(client):
     return client.get(reverse("pce001:about"))
 

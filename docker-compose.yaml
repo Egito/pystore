@@ -7,8 +7,9 @@ services:
     environment: 
       - PYTHONPATH=/usr/bin
     command: python manage.py runserver 0.0.0.0:8080
-    volumes: 
-      - ./:/code
+    volumes:
+      - ${HOME}/config:/config
+      - ${HOME}/pystore:/code
     ports: 
       - 8080:8080
     user: 1000:1000
@@ -39,8 +40,8 @@ services:
 #      - PROXY_DOMAIN=code-server.salvador.eti
     working_dir: /code
     volumes:
-      - ./config:/config
-      - ./:/code
+      - ${HOME}/config:/config
+      - ${HOME}/pystore:/code
     ports:
       - 8443:8443
     restart: unless-stopped
