@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # minhas apps
     'users.apps.UsersConfig',
     'pce001.apps.Pce001Config',
+    'pce002.apps.Pce002Config',
 ]
 
 AUTH_USER_MODEL = "users.User"
@@ -134,3 +135,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
