@@ -3,10 +3,10 @@ from django.views.generic import DetailView, ListView
 
 from .models import Category, Product
 
-class ProductDetailView(DetailView):
+class ProductsDetailView(DetailView):
     query_set = Product.avaliable.all()
 
-class ProductListView(ListView):
+class ProductsListView(ListView):
     category = None
     paginate_by = 6
 

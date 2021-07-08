@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # minhas apps
     'users.apps.UsersConfig',
     'pce001.apps.Pce001Config',
-    'pce002.apps.Pce002Config',
+    'products.apps.ProductsConfig',
 ]
 
 AUTH_USER_MODEL = "users.User"

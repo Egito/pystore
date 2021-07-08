@@ -3,6 +3,6 @@ from django import template
 register = template.Library()
 
 @register.filter()
-def reminder(n):
+def remainder(n):
     return n % 3
 
