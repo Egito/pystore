@@ -3,3 +3,4 @@ config/
 venv/
 vrasp/
 *.pyc
+htmlcov/

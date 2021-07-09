@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
                 ('image', models.ImageField(blank=True, upload_to='products/%Y/%m/%d')),
                 ('description', models.TextField(blank=True)),
                 ('price', models.DecimalField(decimal_places=2, max_digits=15)),
-                ('is_avaliable', models.BooleanField(default=True)),
+                ('is_available', models.BooleanField(default=True)),
                 ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, 
                     related_name='products', to='products.category')),
             ],

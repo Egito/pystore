@@ -3,9 +3,9 @@ from autoslug import AutoSlugField
 from django.urls import reverse
 from model_utils.models import TimeStampedModel
 
-class AvaliableManager(models.Manager):
+class AvailableManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().filter(is_avaliable=True)
+        return super().get_queryset().filter(is_available=True)
 
 class Category(TimeStampedModel):
     name = models.CharField(max_length=255, unique=True)
@@ -32,10 +32,10 @@ class Product(TimeStampedModel):
     image = models.ImageField(upload_to="products/%Y/%m/%d", blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=15, decimal_places=2)
-    is_avaliable = models.BooleanField(default=True)
+    is_available = models.BooleanField(default=True)
 
     objects = models.Manager()
-    avaliable = AvaliableManager()
+    available = AvailableManager()
 
     class Meta:
         ordering = ("name",)

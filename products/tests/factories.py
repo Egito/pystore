@@ -17,7 +17,7 @@ class ProductFactory(factory.django.DjangoModelFactory):
     image = factory.django.ImageField()
     description = factory.Faker("paragraph", nb_sentences=3, variable_nb_sentences=True)
     price = factory.fuzzy.FuzzyDecimal(5.0, 999.99)
-    is_avaliable = factory.Faker("pybool")
+    is_available = factory.Faker("pybool")
 
     class Meta:
         model = Product

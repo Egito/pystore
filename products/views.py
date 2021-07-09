@@ -4,14 +4,14 @@ from django.views.generic import DetailView, ListView
 from .models import Category, Product
 
 class ProductsDetailView(DetailView):
-    query_set = Product.avaliable.all()
+    queryset = Product.available.all()
 
 class ProductsListView(ListView):
     category = None
     paginate_by = 6
 
     def get_queryset(self):
-        queryset = Product.avaliable.all()
+        queryset = Product.available.all()
 
         category_slug = self.kwargs.get('slug')
         if category_slug:

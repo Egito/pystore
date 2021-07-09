@@ -27,13 +27,13 @@ class TestProductModel:
         assert url == f"/products/{product.slug}/"
 
     def test_available_manager(self):
-        ProductFactory(is_avaliable=True)
-        ProductFactory(is_avaliable=False)
+        ProductFactory(is_available=True)
+        ProductFactory(is_available=False)
 
         assert Product.objects.count() == 2
-        assert Product.avaliable.count() == 1
+        assert Product.available.count() == 1
         assertQuerysetEqual(
-            Product.avaliable.all(),
-            Product.objects.filter(is_avaliable=True),
+            Product.available.all(),
+            Product.objects.filter(is_available=True),
             transform=lambda x: x,
         )

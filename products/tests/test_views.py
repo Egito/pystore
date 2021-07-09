@@ -36,7 +36,7 @@ class TestProductDetailView:
         assert view_name == "products:detail"
 
     def test_status_code(self, client):
-        product = ProductFactory(is_avaliable=True)
+        product = ProductFactory(is_available=True)
         url = reverse("products:detail", kwargs={"slug": product.slug})
         response = client.get(url)
         assert response.status_code == 200
