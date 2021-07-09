@@ -58,13 +58,13 @@ services:
   #    - portainer_data:/data
   #    - /var/run/docker.sock:/var/run/docker.sock
 
-  #hoster:
-  #  build: 
-  #      context: .
-  #      dockerfile: Dockerfile-hoster
-  #  volumes:
-  #    - /var/run/docker.sock:/var/run/docker.sock
-  #    - /etc/hosts:/tmp/hosts
+  hoster:
+    build: 
+        context: .
+        dockerfile: Dockerfile-hoster
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/hosts:/tmp/hosts
 
 volumes:
   postgres_data:

@@ -1,8 +1,12 @@
-FROM python:3.8-buster
+FROM python:3.8
 
-RUN pip3 install docker
-RUN mkdir /hoster
-WORKDIR /hoster
-ADD hoster.py /hoster/
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-CMD ["python3", "-u", "hoster.py"]
+WORKDIR /code
+
+RUN python -m pip install --upgrade pip
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+COPY . .
