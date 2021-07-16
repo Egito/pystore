@@ -4,3 +4,4 @@ venv/
 vrasp/
 *.pyc
 htmlcov/
+.ssh/
