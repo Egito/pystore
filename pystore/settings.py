@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'pce001.apps.Pce001Config',
     'products.apps.ProductsConfig',
+    'pvd001.apps.Pvd001Config',
 ]
 
 AUTH_USER_MODEL = "users.User"
