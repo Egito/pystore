@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+j*lf@-o#+qr1&10usrjxtj1+#p^i)li_(j7lz0tc9918po!r0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.92']
+ALLOWED_HOSTS = ['192.168.1.92','127.0.0.1']
 
 # Application definition
 
@@ -89,8 +89,8 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD': 'postgres!',
-        'PORT': '5432',
-        'HOST': 'db',
+        'PORT': '15432',
+        'HOST': 'egito.myddns.me',
     }
 }
 

@@ -9,7 +9,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'map.settings')
 django.setup()
 
 from openpyxl import load_workbook
-from entregas.models import Iniciativa_Estrategica
+from put001.models import tab1
 
 path = os.getcwd()
 if 'cargas' in path:
@@ -17,10 +17,10 @@ if 'cargas' in path:
 else:
     filepath = 'cargas/'
 
-wb = load_workbook(filename=filepath+"dados/map-e.xlsx")
+wb = load_workbook(filename=filepath+"map-e.xlsx")
 
-InicEst = wb['InicEst']
-Iniciativa_Estrategica.objects.all().delete()
+InicEst = wb['tab1']
+tab1.objects.all().delete()
 for i, row in enumerate(InicEst):
     if i>0:
         Iniciativa_Estrategica.objects.update_or_create(titulo=row[0].value, descricao=row[2].value)
