@@ -4,12 +4,4 @@ venv/
 vrasp/
 *.pyc
 htmlcov/
-<<<<<<< HEAD
-<<<<<<< HEAD
 .ssh/
-=======
-.ssh/
->>>>>>> refs/remotes/origin/master
-=======
-.ssh/
->>>>>>> 40dd627a37641aa850ade0cafad44fc549e69027
