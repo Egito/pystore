@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+j*lf@-o#+qr1&10usrjxtj1+#p^i)li_(j7lz0tc9918po!r0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.92','127.0.0.1']
+ALLOWED_HOSTS = ['egito.myddns.me','127.0.0.1']
 
 # Application definition
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'pce001.apps.Pce001Config',
     'products.apps.ProductsConfig',
     'pvd001.apps.Pvd001Config',
+    'parcels.apps.ParcelsConfig',
 ]
 
 AUTH_USER_MODEL = "users.User"

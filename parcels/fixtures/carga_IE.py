@@ -5,11 +5,8 @@ if __name__ == '__main__' and __package__ is None:
     from os import sys, path
     sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'map.settings')
-django.setup()
-
 from openpyxl import load_workbook
-from put001.models import tab1
+from parcels.models import Parcel
 
 path = os.getcwd()
 if 'cargas' in path:
@@ -19,8 +16,13 @@ else:
 
 wb = load_workbook(filename=filepath+"map-e.xlsx")
 
-InicEst = wb['tab1']
-tab1.objects.all().delete()
+InicEst = wb['Entregas_N_Parcela']
+Parcel.objects.all().delete()
 for i, row in enumerate(InicEst):
     if i>0:
-        Iniciativa_Estrategica.objects.update_or_create(titulo=row[0].value, descricao=row[2].value)
+        Parcel.objects.update_or_create(value=row[2].value, 
+            date=row[3].value,
+            parcel=row[4].value,
+            status=row[5].value,
+            comment=row[6].value
+            )
