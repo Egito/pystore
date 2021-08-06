@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import Parcel
+from .models import Parcela
 
-@admin.register(Parcel)
+@admin.register(Parcela)
 class ParcelAdmin(admin.ModelAdmin):
-    list_display = ["parcel", "value", "datep", "status", "comment", "created", "modified"]
+    list_display = ["parcela", "valor", "data", "status_parcela", "obs_parcela"]

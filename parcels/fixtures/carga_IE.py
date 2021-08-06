@@ -20,8 +20,9 @@ InicEst = wb['Entregas_N_Parcela']
 Parcel.objects.all().delete()
 for i, row in enumerate(InicEst):
     if i>0:
-        Parcel.objects.update_or_create(value=row[2].value, 
-            date=row[3].value,
+        Parcel.objects.update_or_create(
+            value=row[2].value, 
+            datep=row[3].value,
             parcel=row[4].value,
             status=row[5].value,
             comment=row[6].value

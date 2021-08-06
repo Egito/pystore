@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {{ Parcelas }}
+{% endblock title %}
+
+{% block content %}
+
+  <!--style-->
+  <style>
+  .wrapper {
+    display: grid;
+    grid-auto-columns: 200px;
+    grid-template-areas: "a a a a a a";
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    padding : 1% 5% 0% 0;
+  }
+  .valor {
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.5),
+                0 6px 10px 0 rgba(0,0,0,0.39);
+    text-align: right;
+    padding : 0 5% 0 0;
+  }
+  .status {
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.5),
+                0 6px 10px 0 rgba(0,0,0,0.39);
+    text-align: center;
+  }
+  .linha:hover{
+    overflow: auto;
+    resize: both;
+    text-overflow: ellipsis;
+    border-radius: 25px;
+    background: lightblue;
+    padding: 1%;
+  }
+
+  .submit_form {
+    padding: 3%;
+    background: bluelight;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4),
+                0 6px 20px 0 rgba(0,0,0,0.36);
+  }
+  </style>
+
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-info">
+    <strong>{{message}}</strong>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <div class="row">
+
+    <div class="col-md-8">
+
+      <div class="wrapper">
+      {% if acao_af == "cont" %}
+        <div class="status">Orcamento</div>
+        <div class="valor">SIGITEC</div>
+        <div class="status">Status</div>
+        <div class="status">Observacao</div>
+        <div class="status">Ação</div>
+      {% elif acao_af == "orca" %}
+        <div class="status">Entrega</div>
+        <div class="status">Tipo Custo</div>
+        <div class="status">Cls Cst</div>
+        <div class="status">Tipo PEP</div>
+        <div class="status">Fornecedor</div>
+        <div class="status">Cenario</div>
+        <div class="status">Descricao</div>
+        <div class="status">Justificativa</div>
+        <div class="status">Ativo</div>
+      {% else %}
+        <div class="status">Orcamento</div>
+        <div class="status">Status</div>
+        <div class="valor">Valor</div>
+        <div class="status">Parcela</div>
+        <div class="status">Data</div>
+        <div class="status">Ação</div>
+      {% endif %}
+      </div>
+        
+      {% for i in item %}
+
+      <div class="linha wrapper">
+      {% if acao_af == "orca" %}
+        <div class="status">{{ i.entrega }}</div>
+        <div class="status">{{ i.tipocusto }}</div>
+        <div class="status">{{ i.classecusto }}</div>
+        <div class="status">{{ i.tipoPEP }}</div>
+        <div class="status">{{ i.fornecedor }}</div>
+        <div class="status">{{ i.cenario }}</div>
+        <div class="status">{{ i.descricao }}</div>
+        <div class="status">{{ i.justificativa }}</div>
+        <div class="status">{{ i.ativo }}</div>
+      {% elif acao_af == "cont" %}
+        <div class="status">{{ i.orcamento }}</div>
+        <div class="valor">{{ i.sigitec }}</div>
+        <div class="status">{{ i.status }}</div>
+        <div class="valor">{{ i.observacao }}</div>
+      {% else %}
+        <div class="status">{{ i.orcamento }}</div>
+        <div class="status">{{ i.status_parcela }}</div>
+        <div class="valor">{{ i.valor }}</div>
+        <div class="status">{{ i.parcela }}</div>
+        <div class="valor">{{ i.data }}</div>
+
+        <div class="status">
+          <form action="del/{{i.id}}" method="POST">
+            {% csrf_token %}
+            <button value="remove" type="submit"  class="btn btn-primary"><span class="bi bi-trash"></span> &nbsp; remove</button>
+          </form>
+        </div>
+      {% endif %}
+      </div>
+
+      {% endfor%}
+    </div>
+
+    <div class="col-md-3" >
+      <div  class="submit_form">
+
+      {% if acao_af == "parc" %}
+
+      <p class="status">Adicionar uma nova parcela</p>
+      <form  method="POST">
+        {% csrf_token %}
+        {{forms|crispy}}
+        <center>
+        <input type="submit" class="btn btn-default" value="submit" />
+      </center>
+      </form>
+
+      {% endif %}
+
+      <a href="carga/">Carregar</a>
+      <strong><a href="orca">Orcamentos</a></strong>
+      <strong><a href="cont">Contratos</a></strong>
+      <strong><a href="parc">Parcelas</a></strong>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock content %}
