@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {{ Grupos }}
+{% endblock title %}
+
+{% block content %}
+
+  <!--style-->
+  <style>
+  .wrapper {
+    display: grid;
+    grid-auto-columns: 200px;
+    grid-template-areas: "a a a a a a";
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    padding : 1% 5% 0% 0;
+  }
+  .valor {
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.5),
+                0 6px 10px 0 rgba(0,0,0,0.39);
+    text-align: right;
+    padding : 0 5% 0 0;
+  }
+  .status {
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.5),
+                0 6px 10px 0 rgba(0,0,0,0.39);
+    text-align: center;
+  }
+  .linha:hover{
+    overflow: auto;
+    resize: both;
+    text-overflow: ellipsis;
+    border-radius: 25px;
+    background: lightblue;
+    padding: 1%;
+  }
+
+  .submit_form {
+    padding: 3%;
+    background: bluelight;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4),
+                0 6px 20px 0 rgba(0,0,0,0.36);
+  }
+  </style>
+
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-info">
+    <strong>{{message}}</strong>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <div class="row">
+
+    <div class="col-md-8">
+
+      <div class="wrapper">
+      {% if acao_af == "gru" %}
+        <div class="status">Nome</div>
+        <div class="valor">id</div>
+        <div class="status">Ação</div>
+      {% else %}
+        <div class="status">Grupo</div>
+        <div class="status">Nick</div>
+        <div class="valor">id</div>
+        <div class="status">Ação</div>
+      {% endif %}
+      </div>
+        
+      {% for i in item %}
+
+      <div class="linha wrapper">
+      {% if acao_af == "gru" %}
+        <div class="status">{{ i.nome }}</div>
+        <div class="status">{{ i.id }}</div>
+      {% else %}
+        <div class="status">{{ i.grupo.nome }}</div>
+        <div class="status">{{ i.nick }}</div>
+        <div class="status">{{ i.id }}</div>
+      {% endif %}
+
+        <div class="status">
+          <form action="del/{{i.id}}/{{ acao_af }}" method="POST">
+            {% csrf_token %}
+            <button value="remove" type="submit"  class="btn btn-primary"><span class="bi bi-trash"></span> &nbsp; remove</button>
+          </form>
+        </div>
+      </div>
+
+      {% endfor%}
+    </div>
+
+    <div class="col-md-3" >
+      <div  class="submit_form">
+
+      <p class="status">Adicionar um novo
+      {% if acao_af == "gru" %}
+        Grupo
+      {% else %}
+        Jogador
+      {% endif %}
+      </p>
+      <form  method="POST">
+        {% csrf_token %}
+        {{forms|crispy}}
+        <center>
+        <input type="submit" class="btn btn-default" value="submit" />
+      </center>
+      </form>
+
+      <a href="carga/">Carregar</a>
+      <strong><a href="gru">Grupos</a></strong>
+      <strong><a href="jog">Jogadores</a></strong>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock content %}

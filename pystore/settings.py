@@ -40,12 +40,14 @@ INSTALLED_APPS = [
     # apps de terceiros
     'debug_toolbar',
     'crispy_forms',
+    'myapp.apps.MyappConfig',
     # minhas apps
     'users.apps.UsersConfig',
     'pce001.apps.Pce001Config',
     'products.apps.ProductsConfig',
     'pvd001.apps.Pvd001Config',
     'parcels.apps.ParcelsConfig',
+    'grupos.apps.GruposConfig',
 ]
 
 AUTH_USER_MODEL = "users.User"
@@ -152,3 +154,5 @@ import socket  # noqa
 #ips = socket.gethostbyname_ex(socket.gethostname())
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

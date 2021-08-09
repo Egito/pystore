@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ UpLoad }}
+{% endblock title %}
+
+{% block content %}
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-info">
+    <strong>{{message}}</strong>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+        <!-- List of uploaded documents -->
+        {% if documents %}
+            All documents in the database:
+            <ul>
+                {% for document in documents %}
+                    <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No documents.</p>
+        {% endif %}
+
+        <!-- Upload form. Note enctype attribute! -->
+        <form action="{% url 'myapp:myview' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ message }}
+            <p>{{ form.non_field_errors }}</p>
+
+            <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+
+            <p>
+                {{ form.docfile.errors }}
+                {{ form.docfile }}
+            </p>
+
+            <p><input type="submit" value="Upload"/></p>
+        </form>
+
+{% endblock content %}
