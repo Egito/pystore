@@ -1,21 +1,21 @@
 from django import forms
 from .fields import GroupedModelChoiceField
-from .models import Grupos, Jogadores
+from .models import Grupo, Publico
 
-class GruposForm(forms.ModelForm):
+class GrupoForm(forms.ModelForm):
     class Meta:
-        model = Grupos
+        model = Grupo
         fields="__all__"
 
-class JogadoresForm(forms.ModelForm):
+class PublicoForm(forms.ModelForm):
     grupo = GroupedModelChoiceField(
-        queryset=Grupos.objects.all(), 
+        queryset=Grupo.objects.all(), 
         initial = 0,
         choices_groupby='id'
         )
 
     class Meta:
-        model = Jogadores
+        model = Publico
         fields = ['grupo','nick','ativo']
         
 #    FormActions(

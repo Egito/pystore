@@ -8,47 +8,6 @@
 
 {% block content %}
 
-  <!--style-->
-  <style>
-  .wrapper {
-    display: grid;
-    grid-auto-columns: 200px;
-    grid-template-areas: "a a a a a a";
-    justify-content: center;
-    text-align: center;
-    vertical-align: middle;
-    padding : 1% 5% 0% 0;
-  }
-  .valor {
-    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.5),
-                0 6px 10px 0 rgba(0,0,0,0.39);
-    text-align: right;
-    padding : 0 5% 0 0;
-  }
-  .status {
-    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.5),
-                0 6px 10px 0 rgba(0,0,0,0.39);
-    text-align: center;
-  }
-  .linha:hover{
-    overflow: auto;
-    resize: both;
-    text-overflow: ellipsis;
-    border-radius: 25px;
-    background: lightblue;
-    padding: 1%;
-  }
-
-  .submit_form {
-    padding: 3%;
-    background: bluelight;
-    border-radius: 25px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4),
-                0 6px 20px 0 rgba(0,0,0,0.36);
-  }
-  </style>
-
-
   {% if messages %}
   {% for message in messages %}
   <div class="alert alert-info">
@@ -104,7 +63,7 @@
       {% if acao_af == "gru" %}
         Grupo
       {% else %}
-        Jogador
+        Publico
       {% endif %}
       </p>
       <form  method="POST">
@@ -116,8 +75,8 @@
       </form>
 
       <a href="carga/">Carregar</a>
-      <strong><a href="gru">Grupos</a></strong>
-      <strong><a href="jog">Jogadores</a></strong>
+      <strong><a href="gru">Grupo</a></strong>
+      <strong><a href="jog">Publico</a></strong>
 
     </div>
 

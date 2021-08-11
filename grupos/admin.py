@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import Grupos
+from .models import Grupo
 
-@admin.register(Grupos)
-class GruposAdmin(admin.ModelAdmin):
+@admin.register(Grupo)
+class GrupoAdmin(admin.ModelAdmin):
     list_display = ["nome"]
