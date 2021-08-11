@@ -1,22 +1,6 @@
 version: "3.3"
 
 services: 
-  web:
-    build: .
-    #container_name: python
-    environment: 
-      - PYTHONPATH=/usr/bin
-    command: python manage.py runserver 0.0.0.0:8080
-    volumes:
-      - ${HOME}/config:/config
-      - ${HOME}/pystore:/code
-    ports: 
-      - 8080:8080
-    user: 1000:1000
-    working_dir: /code
-    depends_on: 
-      - db
-        
   db:
     image: postgres
     #container_name: postgresql
@@ -40,31 +24,42 @@ services:
       - SUDO_PASSWORD=egito #optional
       - SUDO_PASSWORD_HASH= #optional
 #      - PROXY_DOMAIN=code-server.salvador.eti
-    working_dir: /code
     volumes:
       - ${HOME}/config:/config
-      - ${HOME}/pystore:/code
+      - ${HOME}/pystore:/home/app/web
     ports:
       - 8443:8443
     restart: unless-stopped
 
-  #portainer:
-  #  image: portainer/portainer
-  #  #container_name: "${PROJECT_NAME}_portainer"
-  #  ports:
-  #    - "8000:8000"
-  #    - "9000:9000"
-  #  volumes:
-  #    - portainer_data:/data
-  #    - /var/run/docker.sock:/var/run/docker.sock
-  #
-#  hoster:
-#    build: 
-#        context: .
-#        dockerfile: Dockerfile-hoster
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
-#      - /etc/hosts:/tmp/hosts
+  web:
+    build: .
+    #container_name: python
+    environment: 
+      - POSTGRES_HOST=db
+      - PYTHONPATH=/usr/bin
+    volumes: 
+      - ${HOME}/pystore:/home/app/web
+      - ${HOME}/pystore/static:/home/app/web/static
+      - ${HOME}/pystore/media:/home/app/web/media
+    command: python manage.py runserver 0.0.0.0:8080
+    working_dir: /home/app/web
+    #ports: 
+    #  - 8080:8080
+    depends_on: 
+      - db
+
+  nginx:
+    #container_name: nginx
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - ${HOME}/pystore/static:/home/app/web/static
+      - ${HOME}/pystore/media:/home/app/web/media
+    depends_on:
+      - web
 
 volumes:
   postgres_data:

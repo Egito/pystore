@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {{ Grupos }}
+{% endblock title %}
+
+{% block content %}
+
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-info">
+    <strong>{{message}}</strong>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <div class="row">
+
+    <div class="col-md-8">
+
+      <div class="wrapper">
+      {% if acao_af == "gru" %}
+        <div class="status">Nome</div>
+        <div class="valor">id</div>
+        <div class="status">Ação</div>
+      {% else %}
+        <div class="status">Grupo</div>
+        <div class="status">Nick</div>
+        <div class="valor">id</div>
+        <div class="status">Ação</div>
+      {% endif %}
+      </div>
+        
+      {% for i in item %}
+
+      <div class="linha wrapper">
+      {% if acao_af == "gru" %}
+        <div class="status">{{ i.nome }}</div>
+        <div class="status">{{ i.id }}</div>
+      {% else %}
+        <div class="status">{{ i.grupo.nome }}</div>
+        <div class="status">{{ i.nick }}</div>
+        <div class="status">{{ i.id }}</div>
+      {% endif %}
+
+        <div class="status">
+          <form action="del/{{i.id}}/{{ acao_af }}" method="POST">
+            {% csrf_token %}
+            <button value="remove" type="submit"  class="btn btn-primary"><span class="bi bi-trash"></span> &nbsp; remove</button>
+          </form>
+        </div>
+      </div>
+
+      {% endfor%}
+    </div>
+
+    <div class="col-md-3" >
+      <div  class="submit_form">
+
+      <p class="status">Adicionar um novo
+      {% if acao_af == "gru" %}
+        Grupo
+      {% else %}
+        Jogador
+      {% endif %}
+      </p>
+      <form  method="POST">
+        {% csrf_token %}
+        {{forms|crispy}}
+        <center>
+        <input type="submit" class="btn btn-default" value="submit" />
+      </center>
+      </form>
+
+      <a href="carga/">Carregar</a>
+      <strong><a href="gru">Grupos</a></strong>
+      <strong><a href="jog">Jogadores</a></strong>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock content %}
