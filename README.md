@@ -10,7 +10,7 @@ Cada branch desse repositório é uma parte do tutorial, assim é possível ver 
 
 No terminal, execute o comando
 
-docker-compose up --build
+docker-compose up -d
 
 # Para rodar os testes:
 
@@ -37,5 +37,5 @@ docker-compose exec web bash
 
 E a partir daí rodar os comandos normalmente, sem acrescentar docker-compose exec web na frente.
 
-Por fim, acesse o site neste link: http://localhost:8000/
+Por fim, acesse o site neste link: http://localhost:80/
 
