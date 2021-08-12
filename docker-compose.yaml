@@ -37,10 +37,9 @@ services:
     environment: 
       - POSTGRES_HOST=db
       - PYTHONPATH=/usr/bin
+      - APP=Dj Aprendiz
     volumes: 
       - ${HOME}/pystore:/home/app/web
-      - ${HOME}/pystore/static:/home/app/web/static
-      - ${HOME}/pystore/media:/home/app/web/media
     command: python manage.py runserver 0.0.0.0:8080
     working_dir: /home/app/web
     #ports: 
@@ -57,6 +56,7 @@ services:
       - 80:80
     volumes:
       - ${HOME}/pystore/static:/home/app/web/static
+      - ${HOME}/pystore/staticfiles:/home/app/web/staticfiles
       - ${HOME}/pystore/media:/home/app/web/media
     depends_on:
       - web

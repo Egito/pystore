@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block title %}
     {{ Eventos }}
 {% endblock title %}
@@ -14,10 +16,14 @@
   {% endfor %}
   {% endif %}
 
-  
-      <a href="importar-eventos">Carregar</a>
-      <strong><a href="criar-eventos">Eventos</a></strong>
-      <strong><a href="criar-sessao-eventos">Sessões</a></strong>
-      <strong><a href="">Inicio</a></strong>
-  
+  <div class="container">
+
+    <form action="" method="post">
+      {% csrf_token %}
+      
+      {{form | crispy}}
+      
+      <button type="submit">Gravar</button>
+    </form>
+  </div>
 {% endblock content %}

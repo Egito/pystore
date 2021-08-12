@@ -1,8 +1,13 @@
 from django.urls import path
-from .views import IndexView
+from eventos import views
+from .views import CreateEvento, CreateSessaoEvento, ImportaEvento
 
 app_name = 'eventos'
 
 urlpatterns = [
-    path('', IndexView.as_view(), name="eventos"),
+    path('', views.index, name="index"),
+    path('importar-eventos', views.ImportaEvento, name="importar-eventos"),
+    path('criar-eventos', CreateEvento.as_view(), name="criar-eventos"),
+    path('criar-sessao-eventos', CreateSessaoEvento.as_view(), name="criar-sessao-eventos"),
+
 ]
