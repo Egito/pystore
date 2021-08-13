@@ -40,10 +40,9 @@ services:
       - PYTHONPATH=/usr/bin
       - APP=Dj Aprendiz
     volumes: 
-      - ${HOME}/.ssh:/home/app/.ssh
       - ${PWD}/:/home/app/web
     command: python manage.py runserver 0.0.0.0:8080
-    working_dir: /home/app/
+    working_dir: /home/app/web
     #ports: 
     #  - 8080:8080
     depends_on: 
