@@ -25,8 +25,9 @@ services:
       - SUDO_PASSWORD_HASH= #optional
 #      - PROXY_DOMAIN=code-server.salvador.eti
     volumes:
-      - ${HOME}/config:/config
-      - ${HOME}/pystore:/home/app/web
+      - ${PWD}/config:/config
+      - ${PWD}/:/home/app/web
+      - ${HOME}/.ssh:/home/app/.ssh
     ports:
       - 8443:8443
     restart: unless-stopped
@@ -39,9 +40,10 @@ services:
       - PYTHONPATH=/usr/bin
       - APP=Dj Aprendiz
     volumes: 
-      - ${HOME}/pystore:/home/app/web
+      - ${HOME}/.ssh:/home/app/.ssh
+      - ${PWD}/:/home/app/web
     command: python manage.py runserver 0.0.0.0:8080
-    working_dir: /home/app/web
+    working_dir: /home/app/
     #ports: 
     #  - 8080:8080
     depends_on: 
@@ -55,12 +57,11 @@ services:
     ports:
       - 80:80
     volumes:
-      - ${HOME}/pystore/static:/home/app/web/static
-      - ${HOME}/pystore/staticfiles:/home/app/web/staticfiles
-      - ${HOME}/pystore/media:/home/app/web/media
+      - ${PWD}/static:/home/app/web/static
+      - ${PWD}/staticfiles:/home/app/web/staticfiles
+      - ${PWD}/media:/home/app/web/media
     depends_on:
       - web
 
 volumes:
   postgres_data:
-#  portainer_data:
