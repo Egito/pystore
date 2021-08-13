@@ -25,7 +25,7 @@ services:
       - SUDO_PASSWORD_HASH= #optional
 #      - PROXY_DOMAIN=code-server.salvador.eti
     volumes:
-#      - ${PWD}/config:/config
+      - ${PWD}/config:/config
       - ${PWD}/:/home/app/web
       - ${HOME}/.ssh:/home/app/.ssh
     ports:
