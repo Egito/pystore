@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    Eventos
+    {{ Eventos }}
 {% endblock title %}
 
 {% block content %}
@@ -21,13 +21,17 @@
   {% endif %}
 
   <div class="container">
+    
+    <p>
+      Confirma excluir o registro <strong>{{ object }} </strong>?
+    </p>
 
     <form action="" method="post">
       {% csrf_token %}
       
-      {{ form | crispy }}
+      {{ form.as_p }}
       
-      <button type="submit" class="btn btn-primary">Gravar</button>
+      <button type="submit" class="btn btn-danger">Confirmo</button>
     </form>
   
   </div>

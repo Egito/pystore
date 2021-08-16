@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Publico
+{% endblock title %}
+
+{% block content %}
+
+<p>
+  {% include 'eventos/menu.html' %}
+</p>
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <tr>
+      <th>Nick</th>
+      <th>E-Mail</th>
+      <th>Agrupamento</th>
+      <th>Ativo</th>
+      <th>Ações</th>
+    </tr>
+
+    {% for i in object_list %}
+      <tr>
+        <td>{{ i.nick }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.publico_filho }}</td>
+        <td>{{ i.ativo }}</td>
+        <td>
+          <a href="{% url 'eventos:atualizar-publico' i.id %}" class="btn btn-warning btn-sm"> E </a>
+          <a href="{% url 'eventos:excluir-publico' i.id %}" class="btn btn-danger btn-sm"> X </a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr>Nenhum registro</tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock content %}

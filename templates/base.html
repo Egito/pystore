@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-    <title>{% block title %}{{ APP }}{% endblock title %}</title>
+    <h3><title>{% block title %}{{ APP }}{% endblock title %}</title></h3>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -36,7 +36,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{% url 'eventos:index' %}" class="nav-link lead mr-4 font-weight-bold">Eventos</a>
+                        <a href="{% url 'eventos:listar-evento' %}" class="nav-link lead mr-4 font-weight-bold">Eventos</a>
                     </li>
 
                     <li class="nav-item">
@@ -46,11 +46,7 @@
                     <li class="nav-item">
                         <a href="{% url 'myapp:myview' %}" class="nav-link lead mr-4 font-weight-bold">Upload</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="{% url 'grupos:grupo' %}" class="nav-link lead mr-4 font-weight-bold">Grupos</a>
-                    </li>
-
+                
                 </ul>
             </div>
         </div>

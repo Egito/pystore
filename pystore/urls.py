@@ -8,10 +8,10 @@ urlpatterns = [
     path('produtos/', include('products.urls')),
     path('carrinho/', include('pvd001.urls')),
     path('parcelas/', include('parcels.urls')),
+    path('eventos/', include('eventos.urls')),
     path('grupos/', include('grupos.urls')),
     path('admin/', admin.site.urls),
     path('upload/', include('myapp.urls')),
-    path('eventos/', include('eventos.urls')),
 ]
 
 #if settings.DEBUG:

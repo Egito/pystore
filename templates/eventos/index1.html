@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    {{ Eventos }}
+{% endblock title %}
+
+{% block content %}
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-info">
+        <strong>{{message}}</strong>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="row">
+
+    <div class="col-md-8">
+
+      <div class="wrapper">
+      {% if acao_af == "evento" %}
+        <div class="status">Descrição do Evento</div>
+        <div class="status">Ativo</div>
+        <div class="status">Ação</div>
+      {% elif acao_af == "sessao" %}
+        <div class="status">Descrição do Evento</div>
+        <div class="status">Sessão</div>
+        <div class="status">Regras</div>
+        <div class="status">Ativo</div>
+      {% else %}
+        <div class="status">Nick</div>
+        <div class="status">e-Mail</div>
+        <div class="status">Grupo</div>
+        <div class="status">Ativo</div>
+        <div class="status">Ação</div>
+      {% endif %}
+      </div>
+        
+      {% for i in item %}
+
+      <div class="linha wrapper">
+      {% if acao_af == "evento" %}
+        <div class="status">{{ i.descr }}</div>
+        <div class="status">{{ i.ativo }}</div>
+      {% elif acao_af == "sessao" %}
+        <div class="status">{{ i.evento.descr }}</div>
+        <div class="status">{{ i.descr }}</div>
+        <div class="status">{{ i.regras }}</div>
+        <div class="status">{{ i.ativo }}</div>
+      {% else %}
+        <div class="status">{{ i.nick }}</div>
+        <div class="status">{{ i.email }}</div>
+        <div class="status">{{ i.publico_ativo.nick }}</div>
+        <div class="status">{{ i.ativo }}</div>
+
+      {% endif %}
+        <div class="status">
+          <form action="/eventos/processar/{{i.id}}" method="POST" >
+            {% csrf_token %}
+            <input type="hidden" name="acao_af" value="{{acao_af}}">
+            <button value="update" type="submit"  class="btn btn-primary"><span class="bi bi-signin"></span> &nbsp; Alterar</button>
+            <button value="remove" type="submit"  class="btn btn-danger"><span class="bi bi-trash"></span> &nbsp; Remover</button>
+          </form>
+        </div>
+      </div>
+
+      {% endfor%}
+    </div>
+
+    <div class="col-md-3" >
+      <div  class="submit_form">
+
+        {% if acao_af == "evento" %}
+
+          <p class="status">Evento</p>
+
+        {% elif acao_af == "sessao" %}
+
+        <p class="status">Sessao do Evento</p>
+
+        {% else %}
+        
+        <p class="status">Publico</p>
+
+        {% endif %}
+
+        <div class="container">
+
+          <form action="" method="post">
+            {% csrf_token %}
+            
+            {{ form | crispy }}
+            
+            <button type="submit" class="btn btn-primary">Gravar</button>
+          </form>
+        
+        </div>
+
+        {{ acao_af}}
+        <br>
+        <strong><a href="/eventos/index">Inicio</a></strong>
+        <strong><a href="/eventos/evento">Editar Eventos</a></strong>
+        <strong><a href="/eventos/sessao">Editar Sessões</a></strong>
+        <strong><a href="/eventos/publico">Editar Publico</a></strong>
+    </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock content %}

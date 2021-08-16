@@ -1,26 +1,96 @@
 from django.shortcuts import render
 from openpyxl import load_workbook
+from django import forms
 import os
 
-from django.views.generic import CreateView
-from .models import Evento, SessaoEvento, Grupo, Publico
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from .models import Evento, SessaoEvento, Publico
 from django.urls import reverse_lazy
 
-def index(request):
-#    template_name = "eventos/form.html"
-    return render(request, 'eventos/index.html')
+#---- Create Views ----#
 
 class CreateEvento(CreateView):
     model = Evento
+    #item_list = Evento.objects.all()
     fields = ['descr']
+    template_name = "eventos/index.html"
+    success_url = reverse_lazy('eventos:listar-evento')
+
+class CreatePublico(CreateView):
+    model = Publico
+    #item_list = Publico.objects.all()
+    fields = ['nick', 'email', 'publico_filho']
     template_name = "eventos/form.html"
-    success_url = reverse_lazy('/')
+    success_url = reverse_lazy('eventos:listar-publico')
 
 class CreateSessaoEvento(CreateView):
     model = SessaoEvento
+    #item_list = SessaoEvento.objects.all()
     fields = ['descr', 'regras', 'evento']
     template_name = "eventos/form.html"
-    success_url = reverse_lazy('/')
+    success_url = reverse_lazy('eventos:listar-sessao-evento')
+
+#---- Atualizar ----#
+
+class UpdateEvento(UpdateView):
+    model = Evento
+    fields = ['descr', 'ativo']
+    template_name = "eventos/form.html"
+    success_url = reverse_lazy('eventos:listar-evento')
+
+class UpdatePublico(UpdateView):
+    model = Publico
+    fields = ['nick', 'email', 'ativo', 'publico_filho']
+    template_name = "eventos/form.html"
+    success_url = reverse_lazy('eventos:listar-publico')
+
+class UpdateSessaoEvento(UpdateView):
+    model = SessaoEvento
+    fields = ['descr', 'regras', 'ativo', 'evento']
+    template_name = "eventos/form.html"
+    success_url = reverse_lazy('eventos:listar-sessao-evento')
+
+#---- Excluir ----#
+
+class DeleteEvento(DeleteView):
+    model = Evento
+    fields = ['descr', 'ativo']
+    template_name = "eventos/form_ex.html"
+    success_url = reverse_lazy('eventos:listar-evento')
+
+class DeletePublico(DeleteView):
+    model = Publico
+    fields = ['nick', 'email', 'ativo', 'publico_filho']
+    template_name = "eventos/form_ex.html"
+    success_url = reverse_lazy('eventos:listar-publico')
+
+class DeleteSessaoEvento(DeleteView):
+    model = SessaoEvento
+    fields = ['descr', 'regras', 'ativo', 'evento']
+    template_name = "eventos/form_ex.html"
+    success_url = reverse_lazy('eventos:listar-sessao-evento')
+
+#---- List Views ----#
+
+class ListEvento(ListView):
+    model = Evento
+    template_name = "eventos/list/evento.html"
+
+class ListSessaoEvento(ListView):
+    model = SessaoEvento
+    template_name = "eventos/list/sessao.html"
+
+class ListPublico(ListView):
+    model = Publico
+    template_name = "eventos/list/publico.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+#        context['now'] = timezone.now()
+        return context
+
+
+#---- Importacao ----#
 
 def ImportaEvento(request):
     if __name__ == '__main__' and __package__ is None:
