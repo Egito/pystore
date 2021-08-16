@@ -23,7 +23,7 @@ class CreatePublico(CreateView):
 
 class CreateSessaoEvento(CreateView):
     model = SessaoEvento
-    fields = ['descr', 'regras', 'evento']
+    fields = ['evento', 'descr', 'regras', 'dataini', 'datafim']
     template_name = "eventos/form.html"
     success_url = reverse_lazy('eventos:listar-sessao-evento')
 
@@ -37,15 +37,28 @@ class UpdateEvento(UpdateView):
 
 class UpdatePublico(UpdateView):
     model = Publico
-    fields = ['nick', 'email', 'ativo', 'publico_filho']
+    fields = ['nick', 'email', 'publico_filho', 'ativo']
     template_name = "eventos/form.html"
     success_url = reverse_lazy('eventos:listar-publico')
 
 class UpdateSessaoEvento(UpdateView):
     model = SessaoEvento
-    fields = ['descr', 'regras', 'ativo', 'evento']
+    #form_class = FormUpSessEv
+    fields = ['evento', 'descr', 'regras', 'dataini', 'datafim', 'ativo']
     template_name = "eventos/form.html"
     success_url = reverse_lazy('eventos:listar-sessao-evento')
+    
+    widgets = {
+        'dataini': forms.DateField(
+            required=True,
+            widget=forms.TextInput(attrs={'type': 'date'})
+            ),
+        'datafim': forms.DateInput(
+            format=('%d/%m/%Y'),          # <== This line solves the issue
+            attrs={'class': 'form-control',
+                   'type': 'date'
+            }),
+    }
 
 #---- Excluir ----#
 
@@ -63,7 +76,7 @@ class DeletePublico(DeleteView):
 
 class DeleteSessaoEvento(DeleteView):
     model = SessaoEvento
-    fields = ['descr', 'regras', 'ativo', 'evento']
+    fields = ['descr', 'regras', 'dataini', 'datafim', 'evento']
     template_name = "eventos/form_ex.html"
     success_url = reverse_lazy('eventos:listar-sessao-evento')
 

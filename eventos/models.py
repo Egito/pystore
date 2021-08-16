@@ -1,4 +1,5 @@
 from sys import maxsize
+from django import forms
 from django.db import models
 from django.utils import timezone
 #from model_utils.models import TimeStampedModel
@@ -15,9 +16,9 @@ class Evento(models.Model):
 
 class SessaoEvento(models.Model):
     descr = models.CharField(max_length=100, unique=True, verbose_name='Descrição')
-    regras = models.CharField(max_length=1000, null=False, verbose_name='Regras', default='Sem Regras')
-    dataini = models.DateField(auto_now=True, verbose_name='Data Inicio')
-    datafim = models.DateField(auto_now=True, verbose_name='Data Encerramento')
+    regras = models.TextField(max_length=4000, null=False, verbose_name='Regras', default='Sem Regras')
+    dataini = models.DateField(null=True, verbose_name='Data Inicio')
+    datafim = models.DateField(null=True, verbose_name='Data Encerramento')
     ativo = models.BooleanField(default=True)
 
     evento = models.ForeignKey(Evento, on_delete=models.PROTECT)

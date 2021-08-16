@@ -31,3 +31,13 @@
 
 {% endblock content %}
 
+{% block script %}
+
+$(".datepicker").datepicker({
+  format: 'dd/mm/yyyy',
+  autoclose: true,
+  changeYear: true,
+  changeMonth: true
+});
+
+{% endblock script %}
