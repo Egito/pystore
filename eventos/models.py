@@ -4,7 +4,7 @@ from django.utils import timezone
 #from model_utils.models import TimeStampedModel
 
 class Evento(models.Model):
-    descr = models.CharField(max_length=100, verbose_name='Descrição')
+    descr = models.CharField(max_length=100, unique=True, verbose_name='Descrição')
     ativo = models.BooleanField(default=True)
 
     class Meta:
@@ -14,10 +14,10 @@ class Evento(models.Model):
         return "{}".format(self.descr)
 
 class SessaoEvento(models.Model):
-    descr = models.CharField(max_length=100, verbose_name='Descrição')
-    regras = models.CharField(max_length=1000, null=True, verbose_name='Regras', default='Sem Regras')
-#    dataini = models.DateField(default=timezone.now , verbose_name='Data Inicio')
-#    datafim = models.DateField(default=timezone.now, verbose_name='Data Encerramento')
+    descr = models.CharField(max_length=100, unique=True, verbose_name='Descrição')
+    regras = models.CharField(max_length=1000, null=False, verbose_name='Regras', default='Sem Regras')
+    dataini = models.DateField(auto_now=True, verbose_name='Data Inicio')
+    datafim = models.DateField(auto_now=True, verbose_name='Data Encerramento')
     ativo = models.BooleanField(default=True)
 
     evento = models.ForeignKey(Evento, on_delete=models.PROTECT)

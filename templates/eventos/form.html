@@ -8,10 +8,6 @@
 
 {% block content %}
 
-<p>
-  {% include 'eventos/menu.html' %}
-</p>
-
   {% if messages %}
     {% for message in messages %}
       <div class="alert alert-info">
@@ -28,6 +24,7 @@
       {{ form | crispy }}
       
       <button type="submit" class="btn btn-primary">Gravar</button>
+      <a href="/eventos" class="btn btn-danger">Go Back</a>
     </form>
   
   </div>

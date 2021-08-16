@@ -35,8 +35,17 @@
                         <a href="{% url 'pce001:about' %}" class="nav-link lead mr-4 font-weight-bold">Sobre Nós</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="{% url 'eventos:listar-evento' %}" class="nav-link lead mr-4 font-weight-bold">Eventos</a>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link lead mr-4 font-weight-bold" id="navbarDropdownMenuLink"
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Eventos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'eventos:listar-evento' %}" class="nav-link lead mr-4 font-weight-bold">Eventos</a>
+                            <a class="dropdown-item" href="{% url 'eventos:listar-sessao-evento' %}" class="nav-link lead mr-4 font-weight-bold">Sessao de Eventos</a>
+                            <a class="dropdown-item" href="{% url 'eventos:listar-publico' %}" class="nav-link lead mr-4 font-weight-bold">Publico</a>
+                            <a class="dropdown-item" href="{% url 'eventos:importar-eventos' %}" class="nav-link lead mr-4 font-weight-bold">Importação</a>
+                        </div>
                     </li>
 
                     <li class="nav-item">

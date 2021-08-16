@@ -11,21 +11,18 @@ from django.urls import reverse_lazy
 
 class CreateEvento(CreateView):
     model = Evento
-    #item_list = Evento.objects.all()
     fields = ['descr']
-    template_name = "eventos/index.html"
+    template_name = "eventos/form.html"
     success_url = reverse_lazy('eventos:listar-evento')
 
 class CreatePublico(CreateView):
     model = Publico
-    #item_list = Publico.objects.all()
     fields = ['nick', 'email', 'publico_filho']
     template_name = "eventos/form.html"
     success_url = reverse_lazy('eventos:listar-publico')
 
 class CreateSessaoEvento(CreateView):
     model = SessaoEvento
-    #item_list = SessaoEvento.objects.all()
     fields = ['descr', 'regras', 'evento']
     template_name = "eventos/form.html"
     success_url = reverse_lazy('eventos:listar-sessao-evento')
