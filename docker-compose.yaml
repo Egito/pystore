@@ -28,6 +28,7 @@ services:
       - ${PWD}/config:/config
       - ${PWD}/:/home/app/web
       - ${HOME}/.ssh:/home/app/.ssh
+      - ${HOME}/adriano:/home/app/adriano
     ports:
       - 8443:8443
     restart: unless-stopped
@@ -61,6 +62,23 @@ services:
       - ${PWD}/media:/home/app/web/media
     depends_on:
       - web
+
+  web_a:
+    image: pystore_web:latest
+    environment: 
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=contratos
+      - PYTHONPATH=/usr/bin
+      - APP=Dj Aprendiz
+    volumes: 
+      - ${HOME}/adriano:/home/app/web
+    command: python manage.py runserver 0.0.0.0:8080
+    working_dir: /home/app/web
+    ports: 
+      - 8082:8080
+    depends_on: 
+      - web
+      - db
 
 volumes:
   postgres_data:
