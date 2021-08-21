@@ -28,13 +28,15 @@
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                        <a href="{% url 'products:list' %}" class="nav-link lead mr-4 font-weight-bold">Produtos</a>
-                    </li>
-
-                    <li class="nav-item">
                         <a href="{% url 'pce001:about' %}" class="nav-link lead mr-4 font-weight-bold">Sobre Nós</a>
                     </li>
 
+                    {% if request.user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a href="{% url 'products:list' %}" class="nav-link lead mr-4 font-weight-bold">Produtos</a>
+                    </li>
+                
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link lead mr-4 font-weight-bold" id="navbarDropdownMenuLink"
                             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -55,7 +57,25 @@
                     <li class="nav-item">
                         <a href="{% url 'myapp:myview' %}" class="nav-link lead mr-4 font-weight-bold">Upload</a>
                     </li>
+                    {% endif %}
                 
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                    {% if request.user.is_authenticated %}
+                        <a href="#" class="nav-link lead mr-4 font-weight-bold" id="navbarDropdownMenuLink"
+                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ request.user }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#" class="nav-link lead mr-4 font-weight-bold">Meus Dados</a>
+                            <a class="dropdown-item" href="#" class="nav-link lead mr-4 font-weight-bold">Alterar Senha</a>
+                            <a class="dropdown-item" href="{% url 'acessos:logout' %}" class="nav-link lead mr-4 font-weight-bold">Sair</a>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'acessos:login' %}" class="nav-link lead mr-4 font-weight-bold">Login</a>
+                    {% endif %}
+                    </li>
                 </ul>
             </div>
         </div>

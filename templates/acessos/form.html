@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Identificação
+{% endblock title %}
+
+{% block content %}
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-info">
+        <strong>{{message}}</strong>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+
+      <h3>Identificação</h3>
+
+      <div class="container">
+        
+        <form action="" method="post">
+          {% csrf_token %}
+          
+          {{ form | crispy }}
+          
+          <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block script %}
+
+$(".datepicker").datepicker({
+  format: 'dd/mm/yyyy',
+  autoclose: true,
+  changeYear: true,
+  changeMonth: true
+});
+
+{% endblock script %}

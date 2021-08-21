@@ -8,15 +8,17 @@
 
 {% block content %}
 
-  {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-info">
-        <strong>{{message}}</strong>
-      </div>
-    {% endfor %}
-  {% endif %}
-
   <div class="container">
+
+    <h1>{{ titulo }}</h1>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-info">
+          <strong>{{message}}</strong>
+        </div>
+      {% endfor %}
+    {% endif %}
 
     <form action="" method="post">
       {% csrf_token %}

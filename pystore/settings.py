@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'parcels.apps.ParcelsConfig',
     'grupos.apps.GruposConfig',
     'eventos.apps.EventosConfig',
+    'acessos.apps.AcessosConfig',
 ]
 
 AUTH_USER_MODEL = "users.User"
@@ -148,3 +149,7 @@ INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 DATE_INPUT_FORMATS = ('%d/%m/%Y')
+
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/eventos/listar-evento'
+LOGOUT_REDIRECT_URL = '/login'

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Identificação
+{% endblock title %}
+
+{% block content %}
+
+  {% if request.user.is_authenticated %}
+
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+      <br>
+      <br>
+
+      <h1><strong>Permissão</strong></h1>
+      <br>
+      <br>
+
+      <div class="container">
+        
+        <h2>Log registrado</h2>
+        <br>
+        <br>
+        <h3>Permissão insuficiente para essa operação</h3>
+      </div>
+      <a href="#" rel="noopener noreferrer" class="btn btn-danger">Back</a>
+    </div>
+  </div>
+
+  {% else %}
+
+  <div class="row">
+    <div class="col-md-4 mx-auto">
+
+      <h3>Identificação</h3>
+
+      <div class="container">
+        
+        <form action="" method="post">
+          {% csrf_token %}
+          
+          {{ form | crispy }}
+          
+          <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+        
+      </div>
+    </div>
+  </div>
+
+
+  {% endif %}
+
+{% endblock content %}
+
+{% block script %}
+
+$(".datepicker").datepicker({
+  format: 'dd/mm/yyyy',
+  autoclose: true,
+  changeYear: true,
+  changeMonth: true
+});
+
+{% endblock script %}
