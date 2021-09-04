@@ -1,12 +1,12 @@
 
 from django.urls import path
-from grupos import views
+from radios import views
 
-app_name = 'grupos'
+app_name = 'radios'
 
 urlpatterns = [
-    path('', views.index, name="grupo"),
-    path('<acao_af>', views.index, name="grupo"),
+    path('', views.index, name="radio"),
+    path('<acao_af>', views.index, name="radio"),
     path('del/<item_id>/<acao_af>', views.remove, name="del"),
     path('carga/', views.carga, name="carga"),
 ]

@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    {{ Grupos }}
+    {{ title }}
 {% endblock title %}
 
 {% block content %}
@@ -21,14 +21,16 @@
     <div class="col-md-8">
 
       <div class="wrapper">
-      {% if acao_af == "gru" %}
-        <div class="status">Nome</div>
+      {% if acao_af == "radio" %}
+        <div class="status">Serial</div>
         <div class="valor">id</div>
         <div class="status">Ação</div>
       {% else %}
-        <div class="status">Grupo</div>
-        <div class="status">Nick</div>
-        <div class="valor">id</div>
+        <div class="status">Serial</div>
+        <div class="status">Origem</div>
+        <div class="status">Operação</div>
+        <div class="status">Descrição</div>
+        <div class="status">Informado</div>
         <div class="status">Ação</div>
       {% endif %}
       </div>
@@ -36,13 +38,15 @@
       {% for i in item %}
 
       <div class="linha wrapper">
-      {% if acao_af == "gru" %}
-        <div class="status">{{ i.nome }}</div>
+      {% if acao_af == "radio" %}
+        <div class="status">{{ i.serial }}</div>
         <div class="status">{{ i.id }}</div>
       {% else %}
-        <div class="status">{{ i.grupo.nome }}</div>
-        <div class="status">{{ i.nick }}</div>
-        <div class="status">{{ i.id }}</div>
+        <div class="status">{{ i.radios.serial }}</div>
+        <div class="status">{{ i.capamov.origem }}</div>
+        <div class="status">{{ i.tipooperacao.operacao }}</div>
+        <div class="status">{{ i.descricao }}</div>
+        <div class="status">{{ i.dado }}</div>
       {% endif %}
 
         <div class="status">
@@ -61,10 +65,10 @@
       <div  class="submit_form">
 
       <p class="status">Adicionar um novo
-      {% if acao_af == "gru" %}
-        Grupo
+      {% if acao_af == "radio" %}
+        Radio
       {% else %}
-        Publico
+        Movimento
       {% endif %}
       </p>
       <form  method="POST">
@@ -76,8 +80,8 @@
       </form>
 
       <a href="carga/">Carregar</a>
-      <strong><a href="gru">Grupo</a></strong>
-      <strong><a href="jog">Publico</a></strong>
+      <strong><a href="radio">Radios</a></strong>
+      <strong><a href="movimento">Movimento</a></strong>
 
     </div>
 

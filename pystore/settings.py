@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'products.apps.ProductsConfig',
     'pvd001.apps.Pvd001Config',
     'parcels.apps.ParcelsConfig',
-    'grupos.apps.GruposConfig',
+    'radios.apps.RadiosConfig',
     'eventos.apps.EventosConfig',
     'acessos.apps.AcessosConfig',
 ]

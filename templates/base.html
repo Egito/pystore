@@ -34,6 +34,10 @@
                     {% if request.user.is_authenticated %}
 
                     <li class="nav-item">
+                        <a href="{% url 'radios:radio' %}" class="nav-link lead mr-4 font-weight-bold">Radios</a>
+                    </li>
+                
+                    <li class="nav-item">
                         <a href="{% url 'products:list' %}" class="nav-link lead mr-4 font-weight-bold">Produtos</a>
                     </li>
                 

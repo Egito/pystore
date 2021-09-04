@@ -10,7 +10,7 @@ urlpatterns = [
     path('carrinho/', include('pvd001.urls')),
     path('parcelas/', include('parcels.urls')),
     path('eventos/', include('eventos.urls')),
-    path('grupos/', include('grupos.urls')),
+    path('radios/', include('radios.urls')),
     path('admin/', admin.site.urls),
     path('upload/', include('myapp.urls')),
 ]

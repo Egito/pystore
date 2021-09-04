@@ -15,16 +15,16 @@
   {% endif %}
 
         <!-- List of uploaded documents -->
+        <ul>
         {% if documents %}
             All documents in the database:
-            <ul>
-                {% for document in documents %}
-                    <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
-                {% endfor %}
-            </ul>
+            {% for document in documents %}
+                <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+            {% endfor %}
         {% else %}
-            <p>No documents.</p>
+            <li><p>No documents.</p></li>
         {% endif %}
+        </ul>
 
         <!-- Upload form. Note enctype attribute! -->
         <form action="{% url 'myapp:myview' %}" method="post" enctype="multipart/form-data">
